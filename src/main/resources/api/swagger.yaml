@@ -1,0 +1,175 @@
+swagger: '2.0'
+info:
+  title: Customer Profile API
+  description: Customer Profile Management API
+  version: 1.0.0
+schemes:
+  - http
+host: api.test.com
+basePath: /customer/v1
+paths:
+  /profiles:
+    post:
+      tags:
+      - Profile
+      summary: Save Customer Profile
+      description: Save customer profile
+      operationId: saveProfile
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+      - name: profile
+        in: body
+        description: Profile to be saved
+        required: true
+        schema:
+          $ref: '#/definitions/Profile'
+      responses:
+        '201':
+          description: Profile saved successfully
+          schema:
+            $ref: '#/definitions/Profile'
+        '405':
+          description: Invalid input 
+
+  /profiles/{profile_id}:
+    get:
+      tags:
+      - Profile
+      summary: Find Customer Profile by Id
+      description: Returns a single customer profile
+      operationId: getProfileById
+      parameters:
+      - name: profile_id
+        in: path
+        description: Profile Id
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/Profile'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Profile not found  
+    
+    put:
+      tags:
+      - Profile
+      summary: Update Customer Profile by Id
+      description: Update Profile
+      operationId: updateProfile
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: profile_id
+        in: path
+        type: string
+        description: Profile Id
+        required: true
+      - name: profile
+        in: body
+        description: Profile with changes
+        required: true
+        schema:
+          $ref: '#/definitions/Profile'
+      responses:
+        '200':
+          description: Profile successfully updated
+        '400':
+          description: Invalid Profile Id provided
+        '404':
+          description: Profile not found
+        '405':
+          description: Validation Exception
+    
+    delete:
+      tags:
+      - Profile
+      summary: Delete Customer Profile by Id 
+      description: Delete a profile
+      operationId: deleteProfile
+      produces:
+      - application/json
+      parameters:
+      - name: profile_id
+        in: path
+        type: string
+        description: Profile Id
+        required: true
+      responses:
+        '200':
+          description: Profile successfully deleted
+        '404':
+          description: Profile not found
+
+definitions:
+
+  Profile:
+    type: object
+    required: 
+      - "firstName"
+      - "lastName"
+      - "dateOfBirth"
+    properties:
+      profileId:
+        type: string
+        description: Unique Identifier representing a specific customer profile
+      firstName:
+        type: string
+        maxLength: 25
+        description: First Name
+      lastName:
+        type: string
+        maxLength: 25
+        description: Last Name
+      dateOfBirth:
+        type: string
+        format: date
+        description: Date of Birth
+      addresses:
+        type: array
+        items:
+          $ref: '#/definitions/Address'
+            
+        
+  Address:
+    type: object
+    required: 
+      - "address1"
+      - "lastName"
+      - "dateOfBirth"
+    properties:
+      type:
+        type: string
+        enum:
+          - HOME
+          - OFFICE
+      address1:
+        type: string
+        description: Address Line 1
+      address2:
+        type: string
+        description: Address Line 2
+      city:
+        type: string
+        maxLength: 20
+        description: City or Suburb
+      postCode:
+        type: string
+        maxLength: 5
+        description: Post code or Zip code (if US)
+      country:
+        type: string
+        maxLength: 10
+        description: Country
+        
+      
+        
+        
