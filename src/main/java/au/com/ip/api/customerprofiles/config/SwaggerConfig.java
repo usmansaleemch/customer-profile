@@ -37,8 +37,8 @@ public class SwaggerConfig {
     private ApiInfo metaData() {
         return new ApiInfo(
                 "Customer Profile REST API ",
-                "REST API for Customer Profile Management",
-                "1.0",
+                "REST API for Customer Profile Management Project",
+                "1.1",
                 "Terms of service",
                 new Contact("IP", "https://www.intelligentpathways.com.au", ""),
                 "",
