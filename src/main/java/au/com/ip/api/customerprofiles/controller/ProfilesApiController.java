@@ -32,7 +32,7 @@ public class ProfilesApiController implements ProfilesApi {
      * @return Response message
      */
     public ResponseEntity<Void> deleteProfile(@ApiParam(value = "Profile Id",required=true) @PathVariable("profile_id") String profileId) {
-        log.info("Delete Profile " + profileId);
+        log.debug("Delete Profile " + profileId);
         profileService.deleteProfile(profileId);
 
         return new ResponseEntity("Profile deleted successfully", HttpStatus.OK);
@@ -45,7 +45,7 @@ public class ProfilesApiController implements ProfilesApi {
      */
     public Profile getProfileById(@ApiParam(value = "Profile Id",required=true) @PathVariable("profile_id") String profileId) {
 
-        log.info("Retrieve Profile " + profileId);
+        log.debug("Retrieve Profile " + profileId);
         return profileService.getProfileById(profileId);
     }
 
@@ -67,7 +67,7 @@ public class ProfilesApiController implements ProfilesApi {
      * @return Update Profile object
      */
     public ResponseEntity<String> updateProfile(@ApiParam(value = "Profile Id",required=true) @PathVariable("profile_id") String profileId, @ApiParam(value = "Profile with changes" ,required=true )  @Valid @RequestBody Profile profile) {
-        log.info("Update Profile " + profileId);
+        log.debug("Update Profile " + profileId);
         profileService.updateProfile(profileId, profile);
         return new ResponseEntity("Profile updated successfully", HttpStatus.OK);
     }
