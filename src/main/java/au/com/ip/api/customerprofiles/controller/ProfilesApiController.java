@@ -46,6 +46,7 @@ public class ProfilesApiController implements ProfilesApi {
     public Profile getProfileById(@ApiParam(value = "Profile Id",required=true) @PathVariable("profile_id") String profileId) {
 
         log.debug("Retrieve Profile " + profileId);
+        log.info("Retrieve Profile " + profileId);
         return profileService.getProfileById(profileId);
     }
 
@@ -57,6 +58,7 @@ public class ProfilesApiController implements ProfilesApi {
     public Profile saveProfile(@ApiParam(value = "Profile to be saved" ,required=true )  @Valid @RequestBody Profile profile) {
 
         log.info("New Profile " + profile);
+        log.debug("New Profile " + profile);
         return profileService.saveProfile(profile);
     }
 
@@ -69,6 +71,7 @@ public class ProfilesApiController implements ProfilesApi {
     public ResponseEntity<String> updateProfile(@ApiParam(value = "Profile Id",required=true) @PathVariable("profile_id") String profileId, @ApiParam(value = "Profile with changes" ,required=true )  @Valid @RequestBody Profile profile) {
         log.debug("Update Profile " + profileId);
         profileService.updateProfile(profileId, profile);
+        log.debug("Update Profile " + profileId);
         return new ResponseEntity("Profile updated successfully", HttpStatus.OK);
     }
 
