@@ -59,6 +59,11 @@ public class ProfilesApiController implements ProfilesApi {
 
         log.info("New Profile " + profile);
         log.debug("New Profile " + profile);
+        log.debug("New Profile " + profile);
+        log.debug("New Profile " + profile);
+        log.debug("New Profile " + profile);
+        log.debug("New Profile " + profile);
+        log.debug("New Profile " + profile);
         return profileService.saveProfile(profile);
     }
 
@@ -73,6 +78,11 @@ public class ProfilesApiController implements ProfilesApi {
         log.info("Update Profile " + profileId);
         profileService.updateProfile(profileId, profile);
         log.debug("Update Profile " + profileId);
+        log.debug("Update Profile " + profileId);
+        log.debug("Update Profile " + profileId);
+        log.debug("Update Profile " + profileId);
+        log.debug("Update Profile " + profileId);
+
         return new ResponseEntity("Profile updated successfully", HttpStatus.OK);
     }
 
