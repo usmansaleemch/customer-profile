@@ -72,6 +72,7 @@ public class ProfilesApiController implements ProfilesApi {
         log.debug("Update Profile " + profileId);
         log.info("Update Profile " + profileId);
         profileService.updateProfile(profileId, profile);
+        log.debug("Update Profile " + profileId);
         return new ResponseEntity("Profile updated successfully", HttpStatus.OK);
     }
 
